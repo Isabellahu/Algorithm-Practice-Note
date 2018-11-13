@@ -2,7 +2,7 @@
 # MOVE ZEROS
 
 # Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
-
+# method1
 def move_zeros(nums):
     j = 0
     for i in range(len(nums)):
@@ -14,3 +14,17 @@ def move_zeros(nums):
     print(nums)
     
 move_zeros([1,2,0,4,0,9,0,2,4])
+
+# method2
+# leetcode-283
+
+def move_zeros(nums):
+    k = 0
+    for i in range(len(nums)):
+        if nums[i]:
+            if i!=k:
+                nums[i], nums[k] = nums[k], nums[i]
+            k += 1
+            print(nums)
+    print(nums)
+move_zeros([2,0,3,0,0,12])
