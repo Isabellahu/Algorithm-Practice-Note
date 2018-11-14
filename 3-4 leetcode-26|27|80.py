@@ -33,3 +33,21 @@ class Solution:
                 k+=1
         nums = nums[:k+1]
         return len(nums)
+
+    
+# 80. Remove Duplicates from Sorted Array II
+class Solution:
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.append('na')
+        nums.append('na')
+        k=0
+        for i in range(len(nums[:-2])):
+            if not(nums[i] == nums[i+1] and nums[i] == nums[i+2]):
+                nums[k] = nums[i]
+                k+=1
+        nums = nums[:k]
+        return len(nums)
