@@ -85,3 +85,47 @@ class Solution:
         if m<=0:
             for i in range(0, n):
                 nums1[i] = nums2[i]
+
+                
+              
+
+# leetcode-215. Kth Largest Element in an Array
+
+nums = [3,2,3,1,2,4,5,5,0,0,6]
+k = 4
+
+
+low = 0
+high = len(nums)-1
+
+def partition(nums, low, high):
+    
+    p = nums[low]
+    while (low < high):
+        while nums[high] >= p and low < high:
+            high-=1
+        
+        nums[low], nums[high] = nums[high], nums[low]
+
+        while nums[low] <= p and low < high:
+            low+=1
+        nums[low], nums[high] = nums[high], nums[low]
+    return low
+
+# while True 是一个死循环
+# while True一般是跟break语句共同出现的
+# 为了跳出循环，循环体内部要用break语句
+while True:        
+    pos = partition(nums, low, high)
+    if pos < (len(nums)-k):
+        low = pos+1
+        
+    elif pos > (len(nums)-k):
+        high = pos-1
+        
+    else:
+        break
+        
+
+print(nums[pos])
+
