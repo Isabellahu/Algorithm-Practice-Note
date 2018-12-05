@@ -22,7 +22,7 @@ while l<r:
 # leetcode-125
 # 只看数字和字母， 不考虑大小写
 # 空字符串的处理
-
+# method1
 s = "A man, a plan, a canal: Panama"
 ssd = "race a car"
 
@@ -53,3 +53,13 @@ new_s = [i for i in s.upper() if i.isalnum()]
 # a[::-1] 回文序列
 print(new_s == new_s[::-1])
 
+
+# leetcode-344
+# method1
+s = "A man, a plan, a canal: Panama"
+out = "amanaP :lanac a ,nalp a ,nam A"
+print(s[::-1]==out)
+  
+# method2
+a =''.join([s[i] for i in range(len(s)-1, -1, -1)])
+print(a==out)
