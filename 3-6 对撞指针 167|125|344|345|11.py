@@ -63,3 +63,43 @@ print(s[::-1]==out)
 # method2
 a =''.join([s[i] for i in range(len(s)-1, -1, -1)])
 print(a==out)
+
+
+
+# leetcode-345
+s = "leetcode"
+yuanyin = ['a', 'e', 'i', 'o', 'u']
+
+l = 0
+r = len(s) - 1
+s = list(s)
+
+while l < r:
+    while l < r and s[l].lower() not in yuanyin:
+        l += 1
+
+    while l < r and s[r].lower() not in yuanyin:
+        r -= 1
+    if l != r:
+        s[l], s[r] = s[r], s[l]
+
+    l +=1
+    r -=1
+s = ''.join(i for i in s)
+print(s)
+
+# leetcode-11
+height = [2,3,4,5,18,17,6]
+l = 0
+r = len(height) - 1
+container = min(height[l], height[r]) * (r-l)
+
+while l < r:
+    if (min(height[l], height[r]) * (r-l)) > container:
+        container = min(height[l], height[r]) * (r-l)
+    # 比较左右大小， 较大值的指针不动
+    if height[l] < height[r]:
+        l += 1
+    else:
+        r -= 1
+print(container)
