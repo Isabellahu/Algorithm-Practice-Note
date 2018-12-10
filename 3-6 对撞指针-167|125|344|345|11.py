@@ -88,6 +88,8 @@ while l < r:
 s = ''.join(i for i in s)
 print(s)
 
+
+
 # leetcode-11
 height = [2,3,4,5,18,17,6]
 l = 0
