@@ -77,6 +77,7 @@ else:
 print(res)
 
 
+
 # leetcode-76
 '''
 通过两个数组分别记录目标字符串每个字母出现次数 和 记录窗口内每个字母出现次数
@@ -127,3 +128,67 @@ else:
             l += 1
 
 print('res = ', res)
+
+
+# error example
+'''
+#
+一个数组负责计数和匹配
+先让左边界移动到匹配字母的位置
+
+如果右边界指向匹配字母且 次数>0， 进入窗口数组+1, num+1, 移动右边界
+如果没有匹配没有匹配，移动右边界
+如果完全匹配，更迭最短长度,移动右边界
+
+逻辑错误：
+1.左指针需要排除非匹配字符和重复字符，应该最后移动
+2.需要两个数组对照比较，且窗口数组记录全部的字符出现次数
+3.一个数组匹配，可能会导致左指针匹配时，右指针没有记录重复出现的字符
+'''
+
+# s = "aaabbaaba"
+# 
+# t = "abb"
+# 
+# min_length = len(s)
+# num = 0
+# 
+# if s == '' or t == '' or len(s) < len(t):
+#     res = ""
+# 
+# else:
+#     res = ""
+#     # 记录目标字符串每个字母出现次数
+#     t_char = [0] * 128
+#     for i in range(len(t)):
+#         t_char[ord(t[i])] += 1
+# 
+#     # 用于记录窗口内每个字母出现次数
+#     window_char = [0] * 128
+#     l = 0
+#     for r in range(len(s)):
+#         if t_char[ord(s[l])] == 0:
+#             l += 1
+#         elif t_char[ord(s[r])] > 0 and window_char[ord(s[r])] < t_char[ord(s[r])]:
+#             window_char[ord(s[r])] += 1
+#             num += 1
+#         if num == len(t):
+#             if r - l < min_length:
+#                 min_length = r - l
+#                 res = s[l:r+1]
+#                 print(res)
+#                 window_char[ord(s[l])] -= 1
+#                 num -= 1
+#                 l += 1
+#         # print('l = ', l,s[l])
+#         # print('r = ', r,s[r])
+#         # print('num = ', num)
+#         # print('_________________')
+# 
+# 
+# 
+
+
+
+
+
