@@ -39,6 +39,37 @@ while True:
     
     
 # leetcode-290
+pattern = "aaaa"
+str = "dog cat cat dog"
+
+# method1
+# 建立两个字典，正向映射和反向映射
+words = str.split(' ')
+res = True
+arr = {}
+brr = {}
+if len(pattern) != len(words):
+    res = False
+else:
+    for i in range(len(str.split(' '))):
+        if pattern[i] in arr:
+            if arr[pattern[i]] != words[i]:
+                res = False
+        elif words[i] in brr:
+            if brr[words[i]] != pattern[i]:
+                res = False
+        arr[pattern[i]] = words[i]
+        brr[words[i]] = pattern[i]
+print(res)
+
+
+# method2
+# set() 函数创建一个无序不重复元素集
+# zip打包为元组, 判断set之后的长度是否相等
+words = str.split(' ')
+return len(pattern) == len(words) and len(set(pattern)) == len(set(words)) == len(set(zip(pattern, words)))
+
+
 
 # leetcode-205
 
