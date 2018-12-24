@@ -71,6 +71,44 @@ return len(pattern) == len(words) and len(set(pattern)) == len(set(words)) == le
 
 
 
+
 # leetcode-205
+s = "paper"
+t = "title"
+# method1
+print(len(s) == len(t) and len(set(s)) == len(set(t)) == len(set(zip(s, t))))
+
+# method2
+# 双向映射
+res = True
+arr = {}
+brr = {}
+if len(s) != len(t):
+    res = False
+else:
+    for i in range(len(t)):
+        if s[i] in arr:
+            if arr[s[i]] != t[i]:
+                res = False
+        elif t[i] in brr:
+            if brr[t[i]] != s[i]:
+                res = False
+        arr[s[i]] = t[i]
+        brr[t[i]] = s[i]
+print(res)
 
 # leetcode-451
+s = 'Aabbeee'
+# dict根据值排序，然后将列表变成字符串（join方法）
+arr = {}
+for i in s:
+    if i in arr:
+        arr[i] += 1
+    else:
+        arr[i] = 1
+# print(arr.items())
+
+arr = sorted(arr.items(), key=lambda d: d[1], reverse=True)
+# print(arr)
+# print([i[0]*i[1] for i in arr])
+print(''.join([i[0]*i[1] for i in arr]))
