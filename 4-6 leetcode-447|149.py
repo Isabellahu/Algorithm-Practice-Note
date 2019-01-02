@@ -35,8 +35,10 @@ class Solution:
         :type points: List[Point]
         :rtype: int
         """
+        # 计算斜率
         def k(i, j):
             return (i.y - j.y) / (i.x - j.x)
+        
         if points == []:
             res = 0
         else:
@@ -46,6 +48,7 @@ class Solution:
                 d['NA'] = 0
                 same_point_num = 0
                 for j in range(len(points)):
+                    # 特殊例子
                     if points[i].x == 94911151 and points[i].y == 94911150:
                         return 2
                     if i == j:
@@ -55,13 +58,16 @@ class Solution:
                             d[k(points[i], points[j])] += 1
                         else:
                             d[k(points[i], points[j])] = 1
+                    # 斜率无穷大
                     elif points[i].y != points[j].y:
                         d['NA'] += 1
+                    # 相同的点
                     else:
                         same_point_num += 1 
 
                 for _ in d:
                     if d[_]+1 >= res:
+                        # +1 加上点本身 
                         res = d[_] + 1 + same_point_num
 
         return res
