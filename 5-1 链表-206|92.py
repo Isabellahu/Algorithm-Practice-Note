@@ -51,3 +51,36 @@ print(pre.val)
 
                 
 # leetcode - 92. Reverse Linked List II
+class Solution:
+    def reverseBetween(self, head, m, n):
+        """
+        :type head: ListNode
+        :type m: int
+        :type n: int
+        :rtype: ListNode
+        """
+        if head is None:
+            return None
+        # 如果m=1,需要添加一个节点连接到第一个节点
+        dummy = ListNode(0)          
+        dummy.next = head            
+
+        pre = dummy                                              
+        i = 1                                    
+        # pre 找到ｍ                                
+        while pre and i < m:                   
+            pre = pre.next                       
+            i += 1                               
+        # 记录pre                                  
+        target = pre                             
+
+        cur = pre.next                           
+        while cur and i < n:                   
+            nex = cur.next                       
+            cur.next = nex.next                  
+            nex.next = pre.next                  
+            pre.next = nex                       
+            i += 1                               
+
+        return dummy.next
+    
