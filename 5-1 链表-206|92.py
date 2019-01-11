@@ -71,8 +71,6 @@ class Solution:
         while pre and i < m:                   
             pre = pre.next                       
             i += 1                               
-        # 记录pre                                  
-        target = pre                             
 
         cur = pre.next                           
         while cur and i < n:                   
