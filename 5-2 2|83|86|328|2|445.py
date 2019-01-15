@@ -98,6 +98,25 @@ return head
     
     
 # Leetcode - 86 
+# 给定一个列表和整数 x，将列表中所有小于 x 的元素移到大于或等于 x 的元素前面 
+# 用两个链表保存，注意退出循环后自动将末尾链接到None，否则会造成链接到上一次的链表的末尾
+h1 = ListNode('na1')                
+l1 = h1                             
+h2 = ListNode('na2')                
+l2 = h2                             
+cur = head                          
+
+while cur:                          
+    if cur.val < x:                 
+        l1.next = cur               
+        l1 = l1.next                
+    else:                           
+        l2.next = cur               
+        l2 = l2.next                
+    cur = cur.next                  
+l2.next = None                      
+l1.next = h2.next                   
+return h1.next
 
 # Leetcode - 328 
 
