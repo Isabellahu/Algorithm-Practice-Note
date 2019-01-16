@@ -13,6 +13,8 @@ while cur.next:
     if cur.next.val == val:
         delNode = cur.next
         cur.next = delNode.next
+        # 内存释放
+        delNode.next = None
     else:
         cur = cur.next
 return head
@@ -26,6 +28,8 @@ while cur.next:
     if cur.next.val == val:
         delNode = cur.next
         cur.next = delNode.next
+        # 内存释放
+        delNode.next = None
     else:
         cur = cur.next
 return dummyNode.next
