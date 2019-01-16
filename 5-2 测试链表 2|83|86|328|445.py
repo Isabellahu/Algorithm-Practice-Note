@@ -36,7 +36,8 @@ def Reverse_list(head):
                 pre = cur                             
                 cur = nex                             
             return pre                                
-                                                      
+   
+
 # Leetcode - 2. Add Two Numbers                                               
 arr = [5]                                             
 brr = [5]                                             
@@ -97,7 +98,7 @@ pre.next = None
 return head
     
     
-# Leetcode - 86 
+# Leetcode - 86. Partition List
 # 给定一个列表和整数 x，将列表中所有小于 x 的元素移到大于或等于 x 的元素前面 
 # 用两个链表保存，注意退出循环后自动将末尾链接到None，否则会造成链接到上一次的链表的末尾
 h1 = ListNode('na1')                
@@ -118,6 +119,34 @@ l2.next = None
 l1.next = h2.next                   
 return h1.next
 
-# Leetcode - 328 
 
-# Leetcode - 445 
+
+# Leetcode - 328. Odd Even Linked List
+# 给定一个链表，将所有奇数位置节点放在一起，后面放置偶数位置节点。
+# 设置一个虚拟的头结点
+dummyNode = ListNode(0)
+dummyNode.next = head
+# 设置一个新的结点，用于链接所有的偶数位置节点
+h2 = ListNode('NA')
+l2 = h2
+cur = dummyNode
+# 结点位置指针
+i = 0
+while cur.next:
+    # 偶数位置节点
+    if i % 2 != 0:
+        delNode = cur.next
+        cur.next = delNode.next
+        l2.next = delNode
+        l2 = l2.next
+        delNode.next = None
+    # 奇数位置节点
+    else:
+        cur = cur.next
+    i += 1
+l2.next = None
+cur.next = h2.next
+return dummyNode.next
+
+
+# Leetcode - 445. Add Two Numbers II
