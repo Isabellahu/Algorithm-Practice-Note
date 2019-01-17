@@ -46,38 +46,34 @@ l2 = CreateNode(brr)
                                                       
 # 注意[5] [5] -> [0, 1] 进位的处理                           
 # 如果直接将数字相加，大数可能会超出数值范围                               
-i = 0                                                 
 res = 0                                               
-l3 = ListNode(int(res % 10))                          
+l3 = ListNode(0)                          
 head = l3                                             
 while l1 or l2:                                       
     res = l1.val + l2.val + res                       
     l3.next = ListNode(res % 10)                      
     l1 = l1.next                                      
-    l2 = l2.next                                      
-    i += 1                                            
+    l2 = l2.next                                                                
     res = res // 10                                   
     l3 = l3.next                                      
-                                                      
+
     while l1 is None and l2:                          
         res = l2.val + res                            
         l3.next = ListNode(res % 10)                  
-        l2 = l2.next                                  
-        i += 1                                        
+        l2 = l2.next                                        
         res = res // 10                               
         l3 = l3.next                                  
-                                                      
+
     while l2 is None and l1:                          
         res = l1.val + res                            
         l3.next = ListNode(res % 10)                  
-        l1 = l1.next                                  
-        i += 1                                        
+        l1 = l1.next                                       
         res = res // 10                               
-        l3 = l3.next         
-        
-if res != 0:                                          
-    l3.next = ListNode(res)                           
-PrintList(head.next)               
+        l3 = l3.next   
+#首位进位的处理
+if res != 0:                       
+    l3.next = ListNode(res)        
+return head.next        
 
 
 # Leetcode - 83. Remove Duplicates from Sorted List
