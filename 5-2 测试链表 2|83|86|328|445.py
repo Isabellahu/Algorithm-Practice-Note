@@ -150,3 +150,83 @@ return dummyNode.next
 
 
 # Leetcode - 445. Add Two Numbers II
+# method1
+# 通过翻转链表+从末尾开始加和
+def reverse_list(head):
+    cur = head
+    pre = None
+    while cur:
+        nex = cur.next
+        cur.next = pre
+        pre = cur
+        cur = nex
+    return pre
+
+l1 = reverse_list(l1)
+l2 = reverse_list(l2)
+
+res = 0
+l3 = ListNode(0)
+head = l3
+
+while l1 or l2:
+    res = l1.val + l2.val + res
+    l3.next = ListNode(res % 10)
+    res = res // 10
+    l1 = l1.next
+    l2 = l2.next
+    l3 = l3.next
+    # 必须用while，否则会执行前几步的操作短一点的链表值为空报错！
+    while l1 and l2 is None:
+        res = l1.val + res
+        l3.next = ListNode(res % 10)
+        res = res // 10
+        l3 = l3.next
+        l1 = l1.next
+
+    while l2 and l1 is None:
+        res = l2.val + res
+        l3.next = ListNode(res % 10)
+        res = res // 10
+        l3 = l3.next
+        l2 = l2.next
+if res != 0:
+    l3.next = ListNode(res)
+return reverse_list(head.next)
+
+# method2
+stack1 = []
+stack2 = []
+stack3 = []
+while l1:
+    stack1.append(l1.val)
+    l1 = l1.next
+while l2:
+    stack2.append(l2.val)
+    l2 = l2.next
+# 相加的结果
+res = 0
+while stack1 or stack2:
+    res = stack1.pop() + stack2.pop() + res
+    stack3.append(res % 10)
+    res = res // 10
+    # 较为长的链表剩下的结点单独操作
+    while stack1 and stack2 == []:
+        res = stack1.pop() + res
+        stack3.append(res % 10)
+        res = res // 10
+    # 较为长的链表剩下的结点单独操作
+    while stack2 and stack1 == []:
+        res = stack2.pop() + res
+        stack3.append(res % 10)
+        res = res // 10
+# 首位进位
+if res != 0:
+    stack3.append(res)
+# 列表到链表
+h3 = ListNode(0)
+l3 = h3
+for i in range(len(stack3)):
+    l3.next = ListNode(stack3.pop())
+    l3 = l3.next
+return h3.next
