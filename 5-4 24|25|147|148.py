@@ -1,4 +1,4 @@
-# Leetcode - 24
+# Leetcode - 24. Swap Nodes in Pairs
 # 设置虚拟头结点
 dummy_node = ListNode(0)
 dummy_node.next = head
