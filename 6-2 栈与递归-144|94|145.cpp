@@ -18,6 +18,7 @@
 struct Command{
     string s;
     TreeNode* node;
+    # 构造函数的初始化
     Command(string s, TreeNode* node): s(s), node(node) {}
 };
 
@@ -27,6 +28,8 @@ public:
         vector<int> res;
         if ( root == NULL )
             return res;
+        # stack 存储命令
+        # stack -> command -> res
         stack<Command> stack;
         stack.push( Command("go", root) );
         while ( !stack.empty() ) {
@@ -53,15 +56,6 @@ public:
 
 
 # 145. Binary Tree Postorder Traversal
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 # 后序遍历 
 struct Command{
     string s;
@@ -72,7 +66,7 @@ struct Command{
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-     vector<int> res;
+        vector<int> res;
         if ( root == NULL )
             return res;
         stack<Command> stack;
@@ -88,6 +82,44 @@ public:
                 stack.push( Command("print", command.node));
                 if ( command.node -> right )
                     stack.push( Command("go", command.node -> right) );
+                if ( command.node -> left )
+                    stack.push( Command("go", command.node -> left) ); 
+            }
+        }
+        return res;
+            
+    }
+};
+
+
+
+# 94. Binary Tree Inorder Traversal
+# 中序遍历 
+struct Command{
+    string s;
+    TreeNode* node;
+    Command(string s, TreeNode* node): s(s), node(node) {}
+};
+
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if ( root == NULL )
+            return res;
+        stack<Command> stack;
+        stack.push( Command("go", root) );
+        while ( !stack.empty() ) {
+            Command command = stack.top();
+            stack.pop();
+            if ( command.s == "print" )
+                res.push_back( command.node ->val );
+            else{
+                assert( command.s == "go" );
+                # 栈操作：右子树入栈，根结点入栈，左子树入栈
+                if ( command.node -> right )
+                    stack.push( Command("go", command.node -> right) );
+                stack.push( Command("print", command.node));
                 if ( command.node -> left )
                     stack.push( Command("go", command.node -> left) ); 
             }
