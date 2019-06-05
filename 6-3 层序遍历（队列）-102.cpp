@@ -36,7 +36,7 @@ public:
                 res.push_back( vector<int>() );
             
             assert(level < res.size() );
-            res[level].push_back( node->val);
+            res[level].push_back( node->val );
             # 左右孩子入队
             if( node->left )
                 q.push( make_pair( node->left, level + 1 ) );
