@@ -55,7 +55,7 @@ while cur:
 return dummy_node.next
 
 
-# Leetcode - 21
+# Leetcode - 21　合并两个有序链表
 # 递归的方式，返回链表１和２中指针指向的较小的值
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
